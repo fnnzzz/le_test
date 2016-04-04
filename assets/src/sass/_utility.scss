@@ -1,0 +1,75 @@
+
+// ----------------------
+
+$font-roboto : 'Roboto', sans-serif;
+
+// ----------------------
+
+
+// <mixins>
+%debugline {
+    outline: 1px solid rgb(random(255), random(255), random(255));
+}
+
+%clearboth {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+
+// absolute centering
+
+// usage example: 
+// #block { position: absolute; top: 20px; @include center(x);  }
+// #block_2 { position: absolute; @include center(xy); }
+
+@mixin center($xy: xy) {
+    @if $xy == xy {
+        left: 50%;
+        top: 50%;
+        bottom: auto;
+        right: auto;
+
+        @include transform(translateX(-50%) translateY(-50%));
+    }
+    @else if $xy == x {
+        left: 50%;
+        right: auto;
+
+        @include transform(translateX(-50%));
+    }
+    @else if $xy == y {
+        top: 50%;
+        bottom: auto;
+
+        @include transform(translateY(-50%));
+    }
+}
+
+
+
+
+// placeholder color of input
+@mixin placeholder-color($plch-color) {
+    &::-webkit-input-placeholder {
+        color: $plch-color;
+    }
+
+    &:-moz-placeholder {
+        color: $plch-color;
+    }
+
+    &::-moz-placeholder {
+        color: $plch-color;
+    }
+
+    &:-ms-input-placeholder {
+        color: $plch-color;
+    }
+}
+
